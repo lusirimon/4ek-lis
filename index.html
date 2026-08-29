@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Марафон ЖЖ</title>
+<title>Чек-лист</title>
 <style>
   :root{
      --text-scale:1.40;
@@ -41,6 +41,9 @@
    .task-card .task-marks{grid-column:2; grid-row:1; display:flex; flex-direction:column; gap:5px; margin:0;}
    .task-card .links{grid-column:1 / -1; margin:8px 0 0 26px; display:flex; flex-direction:column; gap:6px;}
   .link-field{display:flex; flex-direction:column; gap:2px;}
+  .link-row{display:flex; align-items:center; gap:6px;}
+  .link-num{color:var(--ink-soft); font-weight:700; font-size:calc(12px * var(--text-scale)); flex:none; min-width:1.6em; text-align:right;}
+  .link-row input{flex:1; min-width:0;}
   .links input{font-size:calc(12px * var(--text-scale)); padding:6px 8px;}
   .links input.link-bad{border-color:var(--coral); background:#FBEAE6;}
   .link-warn{font-size:calc(11px * var(--text-scale)); color:var(--coral);}
@@ -84,6 +87,7 @@
   .typo-row input[type=text]:focus{ outline:none; }
   .typo-row button{ flex:none; }
   .typo-thanks{ color:var(--forest); font-size:calc(12px * var(--text-scale)); padding:6px 16px; }
+  .task-num{ color:var(--ink-soft); font-weight:700; }
 </style>
 </head>
 <body>
@@ -164,7 +168,7 @@
    шаблона (например на дату), иначе у участниц не подтянутся
    новые категории/задания — старая версия просто останется как есть.
    ============================================================ */
-const TEMPLATE_VERSION = '2026-08-30';
+const TEMPLATE_VERSION = '2026-08-31';
 const DEFAULT_STATS_URL = 'https://script.google.com/macros/s/AKfycbxEyJsVyA0ob6vLd7-6FJq9g9inELM1LRFAHvLHPsmq_6fTbkBKDt1YNpIQIwbWByud/exec';
 const EMBEDDED_TEMPLATE = {
   "title": "#НЕСКУЧНАЯОСЕНЬ. Чек-лист от 4ek-Lisa",
@@ -986,8 +990,8 @@ const EMBEDDED_TEMPLATE = {
           "text": "#**смотримподноги** - Наблюдаем, подмечаем, считаем — попробуйте так на прогулке и расскажите, что интересного встретилось."
         },
         {
-          "id": "tvdu03j8",
-          "text": "#**пропокупку** \"Не очень было понятно, зачем, но такое милое, что захотелось взять.\"  \"Почти не пользуюсь, но радует. \"Покажите распаковку — обновки, полезные приспособления по хозяйству, «моя прелесть» :)"
+          "id": "tvdu03j8", 
+          "text": "#**расскажитепропокупку** \"Не очень было понятно, зачем, но такое милое, что захотелось взять.\"  \"Почти не пользуюсь, но радует. \"Покажите распаковку — обновки, полезные приспособления по хозяйству, «моя прелесть» :)"
         },
         {
           "id": "t33vkcsg",
@@ -1089,7 +1093,7 @@ const EMBEDDED_TEMPLATE = {
       "tasks": [
         {
           "id": "tmmol1ct",
-          "text": "[#люкогеография](https://www.livejournal.com/rsearch/?tags=%23%D0%BB%D1%8E%D0%BA%D0%BE%D0%B3%D0%B5%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D1%8F&searchArea=post) (люки на улицах)"
+          "text": "[#люкогеография](https://www.livejournal.com/rsearch/?tags=%23%D0%BB%D1%8E%D0%BA%D0%BE%D0%B3%D0%B5%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D1%8F&searchArea=post) \n(люки на улицах)"
         },
         {
           "id": "tuy58o0p",
@@ -1133,11 +1137,11 @@ const EMBEDDED_TEMPLATE = {
         },
         {
           "id": "tzxya0u5",
-          "text": "[#городаивеси](https://www.livejournal.com/rsearch/?tags=%23%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%B0%D0%B8%D0%B2%D0%B5%D1%81%D0%B8&searchArea=post) (игра, вариативная)"
+          "text": "[#городаивеси](https://www.livejournal.com/rsearch/?tags=%23%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%B0%D0%B8%D0%B2%D0%B5%D1%81%D0%B8&searchArea=post) \n(игра, вариативная)"
         },
         {
           "id": "tne9747l",
-          "text": "[#городаипесни](https://www.livejournal.com/rsearch/?tags=%23%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%B0%D0%B8%D0%BF%D0%B5%D1%81%D0%BD%D0%B8&searchArea=post) (гимны, песни о городах)"
+          "text": "[#городаипесни](https://www.livejournal.com/rsearch/?tags=%23%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%D0%B0%D0%B8%D0%BF%D0%B5%D1%81%D0%BD%D0%B8&searchArea=post) \n(гимны, песни о городах)"
         },
         {
           "id": "tadbbeyx",
@@ -1200,15 +1204,19 @@ const EMBEDDED_TEMPLATE = {
         },
         {
           "id": "tydyf2fj",
-          "text": "[#фоторецепт](https://www.livejournal.com/rsearch/?tags=%23%D1%84%D0%BE%D1%82%D0%BE%D1%80%D0%B5%D1%86%D0%B5%D0%BF%D1%82&searchArea=post) (кулинария)"
+          "text": "[#фоторецепт](https://www.livejournal.com/rsearch/?tags=%23%D1%84%D0%BE%D1%82%D0%BE%D1%80%D0%B5%D1%86%D0%B5%D0%BF%D1%82&searchArea=post) (пошаговый)"
         },
         {
           "id": "tohwinwd",
-          "text": "[#покажисвойзавтрак](https://www.livejournal.com/rsearch/?tags=%23%D0%BF%D0%BE%D0%BA%D0%B0%D0%B6%D0%B8%D1%81%D0%B2%D0%BE%D0%B9%D0%B7%D0%B0%D0%B2%D1%82%D1%80%D0%B0%D0%BA&searchArea=post), [#покажисвойужин](https://www.livejournal.com/rsearch/?tags=%23%D0%BF%D0%BE%D0%BA%D0%B0%D0%B6%D0%B8%D1%81%D0%B2%D0%BE%D0%B9%D1%83%D0%B6%D0%B8%D0%BD&searchArea=post)"
+          "text": "[#покажисвойзавтрак](https://www.livejournal.com/rsearch/?tags=%23%D0%BF%D0%BE%D0%BA%D0%B0%D0%B6%D0%B8%D1%81%D0%B2%D0%BE%D0%B9%D0%B7%D0%B0%D0%B2%D1%82%D1%80%D0%B0%D0%BA&searchArea=post), [#покажисвойужин](https://www.livejournal.com/rsearch/?tags=%23%D0%BF%D0%BE%D0%BA%D0%B0%D0%B6%D0%B8%D1%81%D0%B2%D0%BE%D0%B9%D1%83%D0%B6%D0%B8%D0%BD&searchArea=post)\n(лытдыбр, фото блюда)"
+        },
+		 {
+          "id": "tsgby0gy",
+          "text": "[#моячашкакружка](https://www.livejournal.com/rsearch/?tags=%23%D0%BC%D0%BE%D1%8F%D1%87%D0%B0%D1%88%D0%BA%D0%B0%D0%BA%D1%80%D1%83%D0%B6%D0%BA%D0%B0&searchArea=post)\n(любимая; привычная; памятная)"
         },
         {
           "id": "teqj29rk",
-          "text": "[#пропокупку](https://www.livejournal.com/rsearch/?tags=%23%D0%BF%D1%80%D0%BE%D0%BF%D0%BE%D0%BA%D1%83%D0%BF%D0%BA%D1%83&searchArea=post)"
+          "text": "[#расскажитепропокупку](https://www.livejournal.com/rsearch/?tags=%23%D0%BF%D1%80%D0%BE%D0%BF%D0%BE%D0%BA%D1%83%D0%BF%D0%BA%D1%83&searchArea=post)"
         },
         {
           "id": "torr3dvg",
@@ -1216,19 +1224,23 @@ const EMBEDDED_TEMPLATE = {
         },
         {
           "id": "t8x18thl",
-          "text": "[#проверенонасебе](https://www.livejournal.com/rsearch/?tags=%23%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%B5%D0%BD%D0%BE%D0%BD%D0%B0%D1%81%D0%B5%D0%B1%D0%B5&searchArea=post) (советы из личного опыта)"
+          "text": "[#проверенонасебе](https://www.livejournal.com/rsearch/?tags=%23%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%B5%D0%BD%D0%BE%D0%BD%D0%B0%D1%81%D0%B5%D0%B1%D0%B5&searchArea=post) \n(советы из личного опыта)"
         },
         {
           "id": "t4sihmej",
-          "text": "[#мойтоп](https://www.livejournal.com/rsearch/?tags=%D0%BC%D0%BE%D0%B9%D1%82%D0%BE%D0%BF&searchArea=post) (то, что называлось \"в мемориз\")"
+          "text": "[#мойтоп](https://www.livejournal.com/rsearch/?tags=%D0%BC%D0%BE%D0%B9%D1%82%D0%BE%D0%BF&searchArea=post) \n(то, что называлось \"в мемориз\")"
         },
         {
           "id": "tnbjhzc3",
-          "text": "[#яскучаюпо](https://www.livejournal.com/rsearch/?tags=%23%D1%8F%D1%81%D0%BA%D1%83%D1%87%D0%B0%D1%8E%D0%BF%D0%BE&searchArea=post) (кому-либо/чему-либо)"
+          "text": "[#яскучаюпо](https://www.livejournal.com/rsearch/?tags=%23%D1%8F%D1%81%D0%BA%D1%83%D1%87%D0%B0%D1%8E%D0%BF%D0%BE&searchArea=post) \n(кому-либо, чему-либо)"
         },
         {
           "id": "tsgby0gy",
           "text": "[#чётаржу!](https://www.livejournal.com/rsearch/?tags=%23%D1%87%D1%91%D1%82%D0%B0%D1%80%D0%B6%D1%83!&searchArea=post))"
+        },
+        {
+          "id": "t8wtp4y6",
+          "text": "[#хешмоб](https://www.livejournal.com/rsearch/?tags=%23%D1%85%D0%B5%D1%88%D0%BC%D0%BE%D0%B1&searchArea=post) \n (о хешмобоах; предложение новых)"
         }
       ]
     },
@@ -1531,7 +1543,6 @@ function loadState(){
   if(!state.progress.collapsed) state.progress.collapsed = {};
     if(!state.settings) state.settings = {nick:'', statsUrl: DEFAULT_STATS_URL};
   if(!state.settings.statsUrl) state.settings.statsUrl = DEFAULT_STATS_URL;
-  if(!state.settings.statsUrl) state.settings.statsUrl = DEFAULT_STATS_URL;
   if(state.templateVersion !== TEMPLATE_VERSION){
     // подтянули новую версию шаблона; личный прогресс (по id заданий) не трогаем
     state.title = EMBEDDED_TEMPLATE.title;
@@ -1742,14 +1753,14 @@ function renderMarathon(){
       <div class="cat-body">
         ${cat.desc && cat.desc.trim() ? `<div class="cat-desc">${formatTaskText(cat.desc)}</div>` : ''}
         <div class="task-grid">
-          ${cat.tasks.map(t=>{
-            const ts = getTaskState(t.id);
-            return `<div class="task-card ${ts.checked?'done':''}">
-              <div class="task-card-inner">
-                <label>
-                  <input type="checkbox" ${ts.checked?'checked':''} data-check="${t.id}">
-                  <span>${formatTaskText(t.text)}</span>
-                </label>
+          ${cat.tasks.map((t,idx)=>{
+  const ts = getTaskState(t.id);
+  return `<div class="task-card ${ts.checked?'done':''}">
+    <div class="task-card-inner">
+      <label>
+        <input type="checkbox" ${ts.checked?'checked':''} data-check="${t.id}">
+        <span><span class="task-num">${idx+1}.</span> ${formatTaskText(t.text)}</span>
+      </label>
                 <div class="task-marks">
                   <button type="button" class="mark-btn ${ts.marks.liked?'on':''}" data-mark="${t.id}|liked" title="Понравилось">♥</button>
                 </div>
@@ -1759,7 +1770,10 @@ function renderMarathon(){
                   const bad = val && !isLikelyUrl(val);
                   const dup = val && !bad && isDuplicateLink(ts, i, val);
                   return `<div class="link-field">
-                    <input type="text" class="${(bad||dup)?'link-bad':''}" placeholder="ссылка на пост" value="${escAttr(v)}" data-link="${t.id}|${i}">
+                    <div class="link-row">
+                      <span class="link-num">${i+1}.</span>
+                      <input type="text" class="${(bad||dup)?'link-bad':''}" placeholder="ссылка на пост" value="${escAttr(v)}" data-link="${t.id}|${i}">
+                    </div>
                     ${bad ? '<span class="link-warn">⚠ это не похоже на ссылку</span>' : ''}
                     ${dup ? '<span class="link-warn">⚠ такая ссылка уже есть в этом задании</span>' : ''}
                   </div>`;
@@ -1966,4 +1980,3 @@ document.getElementById('typoForm').addEventListener('submit', function(e) {
 </script>
 </body>
 </html>
-
